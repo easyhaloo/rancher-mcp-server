@@ -17,6 +17,7 @@ type Config struct {
 	ReadOnly           bool     `mapstructure:"read_only"`
 	DisableDestructive bool     `mapstructure:"disable_destructive"`
 	ShowSensitiveData  bool     `mapstructure:"show_sensitive_data"`
+	EnableExec         bool     `mapstructure:"enable_exec"`
 	AllowedNamespaces  []string `mapstructure:"allowed_namespaces"`
 	DeniedNamespaces   []string `mapstructure:"denied_namespaces"`
 
@@ -33,6 +34,7 @@ func DefaultConfig() *Config {
 		ReadOnly:           true,
 		DisableDestructive: false,
 		ShowSensitiveData:  false,
+		EnableExec:         false,
 		DeniedNamespaces:   []string{"kube-system", "cattle-system"},
 		Toolsets:           []string{"harvester"},
 	}

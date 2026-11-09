@@ -31,6 +31,9 @@ func (t *Toolset) Register(s *server.MCPServer) {
 	s.AddTool(t.logsTool(), t.logsHandler)
 	s.AddTool(t.eventsTool(), t.eventsHandler)
 	s.AddTool(t.capacityTool(), t.capacityHandler)
+	if t.policy.CanExec() {
+		s.AddTool(t.execTool(), t.execHandler)
+	}
 	if t.policy.CanWrite() {
 		s.AddTool(t.createTool(), t.createHandler)
 		s.AddTool(t.patchTool(), t.patchHandler)

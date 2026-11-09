@@ -33,6 +33,7 @@ func runServe(cfg *config.Config) error {
 		ReadOnly:           cfg.ReadOnly,
 		DisableDestructive: cfg.DisableDestructive,
 		ShowSensitiveData:  cfg.ShowSensitiveData,
+		EnableExec:         cfg.EnableExec,
 		AllowedNamespaces:  cfg.AllowedNamespaces,
 		DeniedNamespaces:   cfg.DeniedNamespaces,
 	}

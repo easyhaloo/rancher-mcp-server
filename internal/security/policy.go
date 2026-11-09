@@ -13,6 +13,7 @@ type Policy struct {
 	ReadOnly           bool
 	DisableDestructive bool
 	ShowSensitiveData  bool
+	EnableExec         bool
 	AllowedNamespaces  []string // Empty = all allowed (except denied)
 	DeniedNamespaces   []string // Always blocked
 }
@@ -49,6 +50,14 @@ func (p *Policy) CheckDestructive() error {
 // CanShowSecret returns true if sensitive data (e.g. Secret data) may be shown.
 func (p *Policy) CanShowSecret() bool {
 	return p.ShowSensitiveData
+}
+
+// CanExec returns true if running commands inside containers is allowed.
+// Exec is opt-in and independent of the write gate: it is neither a write nor
+// a delete, but it does grant arbitrary command execution inside a container,
+// so it requires an explicit --enable-exec at startup.
+func (p *Policy) CanExec() bool {
+	return p.EnableExec
 }
 
 // CheckNamespace returns an error if the namespace is not allowed by policy.
